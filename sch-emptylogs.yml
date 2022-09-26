@@ -57,3 +57,18 @@
       
       
 -------------------------------------------------------------------------------------------
+
+---
+- name: Create cron for yum
+  hosts: node00
+  gather_facts: no
+  tasks:
+    - name: Creates a cron
+      cron:
+        name: yum update
+        weekday: 0
+        minute: 5
+        hour: 8
+        user: root
+        job: "yum -y update"
+        cron_file: ansible_yum
