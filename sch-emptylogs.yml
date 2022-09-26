@@ -9,3 +9,20 @@
        minute: "0"
        hour: "0"
        job: echo "" > /var/log/lastlog
+
+
+-------------------------------------------------------------------------------------------
+
+
+# this is to check the free memory on remote node. Note that there is a script on remote server called free.sh.
+# we just schedule the job to run that script every two hours
+---
+- name: Create a cron job to run free.sh script
+  hosts: node00
+  tasks:
+   - name: Create cron job
+     cron:
+       name: "Free Memory Check"
+       minute: "0"
+       hour: "*/2"
+       job: "sh /root/free.sh"
