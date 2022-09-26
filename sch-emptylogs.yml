@@ -1,0 +1,11 @@
+# this playbook is ato schdule a cronjob to clear the log file everyday at 12 am
+---
+- name: Create a cron job to clear last log
+  hosts: node00
+  tasks:
+   - name: Create cron job
+     cron:
+       name: "Clear Lastlog"
+       minute: "0"
+       hour: "0"
+       job: echo "" > /var/log/lastlog
