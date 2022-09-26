@@ -26,3 +26,34 @@
        minute: "0"
        hour: "*/2"
        job: "sh /root/free.sh"
+       
+       
+---------------------------------------------------------------------------------------------------
+
+# This playbook removes a cron job by 
+---
+- name: remove cron job from node00
+  hosts: node00
+  tasks:
+  - name: Remove cron job
+    cron:
+      name: "Check Memory"
+      state: absent
+      
+      
+      
+------------------------------------------------------------------------------------------------------------
+
+
+---
+- name: Cleanup /tmp after every reboot
+  hosts: node00
+  tasks:
+   - cron:
+      name: cleanup
+      job: rm -rf /tmp/*
+      special_time: reboot
+      
+      
+      
+-------------------------------------------------------------------------------------------
