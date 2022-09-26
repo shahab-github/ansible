@@ -1,0 +1,29 @@
+---
+# Creating a admin group and user
+- hosts: all
+  gather_facts: no
+  tasks:
+    - group:
+        name: 'admin'
+        state: present
+    - user:
+        name: 'admin'
+        uid: 2048
+        group: 'admin'
+        
+****************************************************************
+
+---
+# Removing a admin user and group
+- hosts: all
+  gather_facts: no
+  tasks:
+    - user:
+        name: 'admin'
+        state: absent
+    - group:
+        name: 'admin'
+        state: absent
+        
+        
+****************************************************************
